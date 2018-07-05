@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE xml>
+<toolbox>
+	<tool>
+		<key>ESC</key>
+		<scope>application</scope>
+		<class>org.apache.velocity.tools.generic.EscapeTool</class>
+	</tool>
+	<tool>
+		<key>DATE</key>
+		<scope>application</scope>
+		<class>org.apache.velocity.tools.generic.DateTool</class>
+	</tool>
+	<tool>
+		<key>NUMBER</key>
+		<scope>application</scope>
+		<class>org.apache.velocity.tools.generic.NumberTool</class>
+		<parameter name="format" value="#0.0" />
+	</tool>
+
+	<tool>
+	    <key>math</key>
+	    <scope>application</scope>
+	    <class>org.apache.velocity.tools.generic.MathTool</class>
+	</tool>
+
+</toolbox>
