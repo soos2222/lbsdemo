@@ -43,7 +43,6 @@
 			<bean class="org.springframework.mobile.device.DeviceWebArgumentResolver" />
 			<bean class="org.springframework.mobile.device.site.SitePreferenceWebArgumentResolver" />
 		</mvc:argument-resolvers>
-
 	</mvc:annotation-driven>
 
 	<bean id="velocityConfigurer"
