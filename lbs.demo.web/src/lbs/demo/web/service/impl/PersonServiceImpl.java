@@ -26,7 +26,6 @@ public class PersonServiceImpl implements PersonServiceInterface{
 
 		System.out.println("Person Added Successfully with id="+personbean.getId());
 
-
 		return 0;
 	}
 

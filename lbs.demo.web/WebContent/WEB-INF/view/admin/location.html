@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <title>Map Viewer (3-column layout)</title>
+    <link rel="stylesheet" href="../assets/css/ol.css" />
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../fontawesome-free-5.1.0-web/css/all.css" />
+    <script type="text/javascript" src="../assets/js/ol.js"></script>
+    <script type="text/javascript" src="../jquery/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=Or0VrBsMZP7mSnt8MCMX&submodules=geocoder"></script>
+  </head>
+  	<style type="text/css">
+	.map{
+		height: 50vh;
+	}
+    </style>
+  <body>
+  	<div class="container" style=" float: left; height: auto; margin: 15px 15px 15px 0px; padding: 10px;">
+	    <h4 align="left"> 데모 디바이스 위치 이력 관리 </h4>
+			&nbsp; Devices: <select id="selectDevice" class="form-control" onchange="deviceSelect()" >
+							    <option value="device01">직장인</option>
+							    <option value="device02">중학생</option>
+							    <option value="device03">치매노인</option>
+							</select>
+			&nbsp; Date: <input id="selectDate" class="form-control" type="date" value="2018-09-11" /> <br>
+
+
+		<div class="panel-group">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" href="#collapse1">위치 추가</a>
+					</h4>
+				</div>
+				<div id="collapse1" class="panel-collapse collapse">
+					<div class="panel-body">
+					<div id="map" class="map"> </div> <br>
+					&nbsp; Date: <input id="addDate" class="form-control" type="date" value="2018-09-11" /> <br>
+					&nbsp; Time: <input id="addTime" class="form-control" type="time" value="21:07:10" /> <br>
+					<input id="addMarker" class="form-control" type="hidden" value="0" />
+
+					<button class="btn btn-default" type="button"  onclick="test()">추가</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+	#if($devices.size() > 0)
+		<table class="table table-hover" style="width:100%; margin-left: 15px;">
+		  <tr>
+		    <th>Name</th>
+		    <th>Age</th>
+		    <th>Gender</th>
+		    <th>Id</th>
+		    <th>Update</th>
+		    <th>Delete</th>
+		    <th>위치 이력 관리</th>
+		  </tr>
+		  #foreach($tmp in $!devices)
+			   <tr>
+			    <td><input id="name$velocityCount" class="form-control" type=text value=$!tmp.deviceName></td>
+			    <td><input id="country$velocityCount" class="form-control" type=text value=$!tmp.deviceAge></td>
+			    <td><input id="country$velocityCount" class="form-control" type=text value=$!tmp.deviceGender></td>
+			    <td>$!tmp.id</td>
+			    <td><button class="btn btn-default" type="button" onclick="editPerson('$velocityCount', '$!tmp.id')">Update!</button></td>
+			    <td><button class="btn btn-default" type="button" onclick="deletePerson('$!tmp.id')">Delete!</button></td>
+			    <td><button class="btn btn-default" type="button"  onclick="window.location.href='location.html'">관리</button></td>
+			  </tr>
+		  #end
+		</table>
+		#end
+
+
+  	</div>
+
+
+
+	<script>
+
+	function deviceSelect(){
+		var selectDevice = document.getElementById("selectDevice").value;
+		var selectDate = document.getElementById("selectDate").value.toString();
+
+		method= "post";
+		var form = document.createElement("form");
+	    form.setAttribute("method", method);
+	    form.setAttribute("action", "history.html");
+
+	    var inputDevice = document.createElement("input");
+	    inputDevice.setAttribute("name", "deviceName");
+	    inputDevice.setAttribute("type", "hidden");
+	    inputDevice.setAttribute("value", selectDevice);
+
+	    var inputDate = document.createElement("input");
+	    inputDate.setAttribute("name", "locationDate");
+	    inputDate.setAttribute("type", "hidden");
+	    inputDate.setAttribute("value", selectDate);
+
+	    document.body.appendChild(form).appendChild(inputDevice);
+	    document.body.appendChild(form).appendChild(inputDate);
+	    form.submit();
+	}
+
+	function test(){
+		console.log("tset");
+
+		var selectDevice = document.getElementById("selectDevice").value;
+		var selectDate = document.getElementById("addDate").value.toString();
+		var selectTime = document.getElementById("addTime").value.toString();
+		var selectMarker = document.getElementById("addMarker").value;
+		var latitude = markerList[selectMarker].position.y;
+		var longitude = markerList[selectMarker].position.x;
+
+		console.log(latitude);
+		console.log(longitude);
+		console.log(selectDevice);
+		console.log(selectDate);
+		console.log(selectTime);
+
+
+		method= "post";
+		var form = document.createElement("form");
+	    form.setAttribute("method", method);
+	    form.setAttribute("action", "addloc.html");
+
+	    var inputDevice = document.createElement("input");
+	    inputDevice.setAttribute("name", "deviceName");
+	    inputDevice.setAttribute("type", "hidden");
+	    inputDevice.setAttribute("value", selectDevice);
+	    document.body.appendChild(form).appendChild(inputDevice);
+
+	    var inputDate = document.createElement("input");
+	    inputDate.setAttribute("name", "locationDate");
+	    inputDate.setAttribute("type", "hidden");
+	    inputDate.setAttribute("value", selectDate);
+	    document.body.appendChild(form).appendChild(inputDate);
+
+	    var inputTime = document.createElement("input");
+	    inputTime.setAttribute("name", "locationTime");
+	    inputTime.setAttribute("type", "hidden");
+	    inputTime.setAttribute("value", selectTime);
+	    document.body.appendChild(form).appendChild(inputTime);
+
+	    var inputLatitude = document.createElement("input");
+	    inputLatitude.setAttribute("name", "latitude");
+	    inputLatitude.setAttribute("type", "hidden");
+	    inputLatitude.setAttribute("value", latitude);
+	    document.body.appendChild(form).appendChild(inputLatitude);
+
+	    var inputLongitude = document.createElement("input");
+	    inputLongitude.setAttribute("name", "longitude");
+	    inputLongitude.setAttribute("type", "hidden");
+	    inputLongitude.setAttribute("value", longitude);
+	    document.body.appendChild(form).appendChild(inputLongitude);
+
+	    form.submit();
+	}
+	</script>
+
+	  <script>
+      var map = new naver.maps.Map('map');
+
+      var markerList = [];
+      var menuLayer = $('<div style="position:absolute;z-index:10000;background-color:#fff;border:solid 1px #333;padding:10px;display:none;"></div>');
+
+
+      map.getPanes().floatPane.appendChild(menuLayer[0]);
+
+      naver.maps.Event.addListener(map, 'click', function(e) {
+
+		  var timeStamp = new Date();
+		  var markerNumber = markerList.length;
+          var marker = new naver.maps.Marker({
+              position: e.coord,
+              map: map,
+              time: timeStamp,
+              markerNum: markerNumber
+          });
+
+          naver.maps.Event.addListener(marker, "click", function(e) {
+        	 console.log('Coord: ' + e.coord.toString());
+        	 console.log(marker.time);
+        	 document.getElementById("addDate").value = marker.time.toISOString().substr(0,10);
+        	 document.getElementById("addTime").value = marker.time.toTimeString().substr(0,8)
+      	});
+
+          markerList.push(marker);
+      });
+
+      naver.maps.Event.addListener(map, 'keydown', function(e) {
+          var keyboardEvent = e.keyboardEvent,
+              keyCode = keyboardEvent.keyCode || keyboardEvent.which;
+
+          var ESC = 27;
+
+          if (keyCode === ESC) {
+              keyboardEvent.preventDefault();
+
+              for (var i=0, ii=markerList.length; i<ii; i++) {
+                  markerList[i].setMap(null);
+              }
+
+              markerList = [];
+
+              menuLayer.hide();
+          }
+      });
+
+      naver.maps.Event.addListener(map, 'mousedown', function(e) {
+          menuLayer.hide();
+      });
+
+      naver.maps.Event.addListener(map, 'rightclick', function(e) {
+          var coordHtml =
+              'Coord: '+ '(우 클릭 지점 위/경도 좌표)' + '<br />' +
+              'Point: ' + e.point + '<br />' +
+              'Offset: ' + e.offset;
+
+          menuLayer.show().css({
+              left: e.offset.x,
+              top: e.offset.y
+          }).html(coordHtml);
+
+          console.log('Coord: ' + e.coord.toString());
+      });
+
+      </script>
+
+  </body>
+</html>

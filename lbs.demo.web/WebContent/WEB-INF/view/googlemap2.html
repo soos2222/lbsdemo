@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+ <head>
+ 	<meta charset="utf-8" />
+ 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <title>Google Map Viewer</title>
+    <link rel="stylesheet" href="./assets/css/ol.css" />
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./fontawesome-free-5.1.0-web/css/all.css" />
+    <script type="text/javascript" src="./assets/js/ol.js"></script>
+    <script type="text/javascript" src="./jquery/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="./bootstrap/js/bootstrap.min.js"></script>
+
+
+ </head>
+
+ <body>
+
+<div id="map" class="map">
+</div>
+
+
+
+ </body>
+
+       <script>
+      var map;
+
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: -34.397, lng: 150.644},
+          zoom: 8
+        });
+      }
+
+
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIxQYCt8Rs48QPfxRLcRd6sJ6EgWI-R-U&callback=initMap"
+    async defer></script>
+
+
+
+
+</html>

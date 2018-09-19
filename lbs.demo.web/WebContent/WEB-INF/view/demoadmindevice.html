@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <title>Map Viewer (3-column layout)</title>
+    <link rel="stylesheet" href="./assets/css/ol.css" />
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./fontawesome-free-5.1.0-web/css/all.css" />
+    <script type="text/javascript" src="./assets/js/ol.js"></script>
+    <script type="text/javascript" src="./jquery/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="./bootstrap/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+  	<div class="container" style=" float: left; height: auto; margin: 15px 15px 15px 0px; padding: 10px;">
+	    <h4 align="left"> 데모 디바이스 관리 </h4>
+	 	 <form class="form-inline" action="addperson.html" method="post">
+			&nbsp; Name: <input class="form-control" type="text" name="name" value="">
+			&nbsp; Age:  <input class="form-control" type="text" name="country" value="">
+			&nbsp; Gender: <select name="cars" class="form-control" >
+							    <option value="M">남</option>
+							    <option value="W">여</option>
+							</select>
+			<input class="btn btn-primary" type="submit" value="추가">
+		</form>
+  	</div>
+
+		#if($persons.size() > 0)
+		<table class="table table-hover" style="width:100%; margin-left: 15px;">
+		  <tr>
+		    <th>Name</th>
+		    <th>Country</th>
+		    <th>Id</th>
+		    <th>Update</th>
+		    <th>Delete</th>
+		  </tr>
+		  #foreach($tmp in $!persons)
+			   <tr>
+			    <td><input id="name$velocityCount" class="form-control" type=text value=$!tmp.name></td>
+			    <td><input id="country$velocityCount" class="form-control" type=text value=$!tmp.country></td>
+			    <td>$!tmp.id</td>
+			    <td><button class="btn btn-default" type="button" onclick="editPerson('$velocityCount', '$!tmp.id')">Update!</button></td>
+			    <td><button class="btn btn-default" type="button" onclick="deletePerson('$!tmp.id')">Delete!</button></td>
+			  </tr>
+		  #end
+		</table>
+		#end
+
+
+	<script>
+	function editPerson(number, id) {
+		console.log(document.getElementById("name"+number ).value);
+
+ 	 	method= "post";
+		var form = document.createElement("form");
+	    form.setAttribute("method", method);
+	    form.setAttribute("action", "editperson.html");
+
+	    var input = document.createElement("input");
+	    input.setAttribute("name", "id");
+	    input.setAttribute("type", "hidden");
+	    input.setAttribute("value", id);
+	    document.body.appendChild(form).appendChild(input);
+
+	    var inputName = document.createElement("input");
+	    inputName.setAttribute("name", "name");
+	    inputName.setAttribute("type", "hidden");
+	    inputName.setAttribute("value", document.getElementById("name"+number ).value);
+	    document.body.appendChild(form).appendChild(inputName);
+
+	    var inputCountry = document.createElement("input");
+	    inputCountry.setAttribute("name", "country");
+	    inputCountry.setAttribute("type", "hidden");
+	    inputCountry.setAttribute("value", document.getElementById("country"+number ).value);
+	    document.body.appendChild(form).appendChild(inputCountry);
+
+	    form.submit();
+
+	}
+
+	function deletePerson(id) {
+		console.log(id);
+
+		method= "post";
+		var form = document.createElement("form");
+	    form.setAttribute("method", method);
+	    form.setAttribute("action", "deleteperson.html");
+
+	    var input = document.createElement("input");
+	    input.setAttribute("name", "id");
+	    input.setAttribute("type", "hidden");
+	    input.setAttribute("value", id);
+
+	    document.body.appendChild(form).appendChild(input);
+	    form.submit();
+
+	}
+	</script>
+
+  </body>
+</html>

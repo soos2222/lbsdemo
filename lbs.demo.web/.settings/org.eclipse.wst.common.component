@@ -3,6 +3,9 @@
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <dependent-module archiveName="ai.core.common-0.0.1.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/ai.core.common/ai.core.common">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="lbs.demo.web"/>
         <property name="java-output-path" value="/lbs.demo.web/build/classes"/>
     </wb-module>

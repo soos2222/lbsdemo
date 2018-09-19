@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="ko">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/images/softwizfavicon.png">
+    <title>Softwiz - Experience social safety net service</title>
+    <!-- Custom CSS -->
+    <link href="./assets/libs/chartist/dist/chartist.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="./dist/css/style.min.css" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+	<style type="text/css">
+		.map{
+		height: 40vh;
+		}
+
+		.console{
+		height: 40vh;
+		}
+		.logo-text{
+			color:white;
+			font-size : 19px;
+		}
+		.title-text{
+			color: rgba(0,0,0,1);
+			margin-left:10px;
+		}
+	</style>
+</head>
+
+<body  onload="typeWriter()">
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>
+    <div id="main-wrapper" data-navbarbg="skin6" data-theme="light" data-layout="vertical" data-sidebartype="full" data-boxed-layout="full">
+        <header class="topbar" data-navbarbg="skin6">
+            <nav class="navbar top-navbar navbar-expand-md navbar-light">
+                <div class="navbar-header" data-logobg="skin5">
+                    <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)">
+                        <i class="ti-menu ti-close"></i>
+                    </a>
+                    <div class="navbar-brand">
+                        <a href="index.html" class="logo">
+                            <!-- Logo icon -->
+                            <b class="logo-icon">
+                                <!-- Dark Logo icon -->
+                                <img src="./assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
+                                <!-- Light Logo icon -->
+                                <img src="./assets/images/logo-light-icon.png" alt="homepage" class="light-logo" />
+                            </b>
+                            <!--End Logo icon -->
+                            <!-- Logo text -->
+                            <span class="logo-text">
+                                SOFTWIZ
+                            </span>
+                        </a>
+                    </div>
+                    <a class="topbartoggler d-block d-md-none waves-effect waves-light" href="javascript:void(0)" data-toggle="collapse" data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="ti-more"></i>
+                    </a>
+                </div>
+                <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin6">
+                    <ul class="navbar-nav float-left mr-auto">
+                         <li>
+                         	<h5 class="title-text">사회안전망 서비스 체험하기 - Experience social safety net service</h5>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav float-right">
+                        <li>
+							<a class="mdi mdi-home" href="www.softwiz.co.kr"></a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <aside class="left-sidebar" data-sidebarbg="skin5">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar">
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav">
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="serviceintro.html" aria-expanded="false">
+                                <i class="mdi mdi-numeric-0-box-outline"></i>
+                                <span class="hide-menu">서비스 소개</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="pages-profile.html" aria-expanded="false">
+                                <i class="mdi mdi-numeric-1-box-outline"></i>
+                                <span class="hide-menu">사용자 행동 분석</span>
+                            </a>
+                        </li>
+                         <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="frequentdestination.html" aria-expanded="false">
+                                <i class="mdi mdi-numeric-2-box-outline"></i>
+                                <span class="hide-menu">자주가는 장소 분석</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="table-basic.html" aria-expanded="false">
+                                <i class="mdi mdi-numeric-3-box-outline"></i>
+                                <span class="hide-menu">이동 경로 분석</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="icon-material.html" aria-expanded="false">
+                                <i class="mdi mdi-numeric-4-box-outline"></i>
+                                <span class="hide-menu">위험노출 분석</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="starter-kit.html" aria-expanded="false">
+                                <i class="mdi mdi-numeric-5-box-outline"></i>
+                                <span class="hide-menu">마치며</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+
+        <div class="page-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-8 ">
+                        <div class="card">
+                            <div class="card-body map" id="map">
+                                <!-- <h4 class="card-title">Sales Ratio</h4> -->
+                                <div class="sales ct-charts mt-3"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body console">
+                                <h5 class="card-title m-b-5">Console</h5>
+                                <div class="m-t-20 text-center">
+                                    <!-- <div id="earnings"></div> -->
+                                    <div  id=consoleText>
+
+                                    </div>
+                                    <br>
+                                    <button onclick="descriptionStart()" id="startButton" class="btn btn-warning" style="display:none">시작하기</button>
+                                    <button onclick="analyzeLocations()" id="requestButton" class="btn btn-warning" style="display:none">분석하기</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!-- column -->
+                    <div class="col-lg-6">
+                        <div class="card detail">
+                            <div class="card-body ">
+                                <h4 class="card-title">Devices</h4>
+                            </div>
+                            <div id="test" class="comment-widgets" style="height:370px;">
+                                #if($deviceList.size() > 0)
+                                #foreach($tmp in $!deviceList)
+                                <div id="device$velocityCount" class="d-flex flex-row comment-row m-t-0" onClick="getDeviceProp('$!tmp.id', '$velocityCount');">
+                                    <div class="p-2">
+                                        <img src="./assets/images/users/$!tmp.profileImg" alt="user" width="50" class="rounded-circle">
+                                    </div>
+                                    <div class="comment-text w-100">
+                                        <h6 class="font-medium">$!tmp.deviceName</h6>
+                                        <span class="m-b-15 d-block">$!tmp.deviceDescription</span>
+                                        <div class="comment-footer">
+                                            <span class="text-muted float-right">$!tmp.lastUpdatedTime</span>
+                                            <span class="label label-rounded label-$!tmp.labelType">$!tmp.lastMotion</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                #end
+                                #end
+                            </div>
+                        </div>
+                    </div>
+                    <!-- column -->
+                    <div class="col-lg-6" >
+                        <div class="card detail" >
+                            <div class="card-body" style="height:451px;">
+                                <h4 class="card-title">Properties</h4>
+                                <table class="table no-border mini-table m-t-20">
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-muted">시간</td>
+                                            <td class="font-medium">2018-07-05 12:52:08</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-muted">위도</td>
+                                            <td class="font-medium">37.408002</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-muted">경도</td>
+                                            <td class="font-medium">126.971871</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-muted">고도</td>
+                                            <td class="font-medium">78.77</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <ul class="row list-style-none text-center m-t-30">
+                                    <li class="col-3">
+                                        <h4 class="text-info"><i class="mdi mdi-bus"></i></h4>
+                                        <span class="d-block text-muted">모션</span>
+                                        <h3 class="m-t-5">버스</h3>
+                                    </li>
+                                    <li class="col-3">
+                                        <h4 class="text-info"><i class="mdi mdi-lightbulb-outline"></i></h4>
+                                        <span class="d-block text-muted">위험도</span>
+                                        <h3 class="m-t-5">72%</h3>
+                                    </li>
+                                    <li class="col-3">
+                                        <h4 class="text-info"><i class="mdi mdi-battery-60"></i></h4>
+                                        <span class="d-block text-muted">배터리</span>
+                                        <h3 class="m-t-5">64%</h3>
+                                    </li>
+                                    <li class="col-3">
+                                        <h4 class="text-info"><i class="mdi mdi-crosshairs-gps"></i></h4>
+                                        <span class="d-block text-muted">위치 오차</span>
+                                        <h3 class="m-t-5">0.0 km</h3>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <footer class="footer text-center">
+                All Rights Reserved by Softwiz. Designed and Developed by jsim
+                <!-- <a href="https://wrappixel.com">WrapPixel</a>. -->
+            </footer>
+        </div>
+    </div>
+
+    <script src="./assets/libs/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="./assets/libs/popper.js/dist/umd/popper.min.js"></script>
+    <script src="./assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="./assets/extra-libs/sparkline/sparkline.js"></script>
+    <!--Wave Effects -->
+    <script src="./dist/js/waves.js"></script>
+    <!--Menu sidebar -->
+    <script src="./dist/js/sidebarmenu.js"></script>
+    <!--Custom JavaScript -->
+    <script src="./dist/js/custom.min.js"></script>
+    <!--This page JavaScript -->
+    <!--chartis chart-->
+    <script src="./assets/libs/chartist/dist/chartist.min.js"></script>
+    <script src="./assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
+    <script src="./dist/js/pages/dashboards/dashboard1.js"></script>
+</body>
+
+<script>
+	var map;
+
+	function initMap() {
+		map = new google.maps.Map(document.getElementById('map'), {
+			center : {
+				lat : 37.408002,
+				lng : 126.971871
+			},
+			zoom : 15
+		});
+	}
+</script>
+<script
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIxQYCt8Rs48QPfxRLcRd6sJ6EgWI-R-U&callback=initMap"
+	async defer></script>
+
+<script>
+	var textIndex01 = 0;
+	var timer01;
+	var description01 = '자주가는 장소 분석은 사용자의 위치 데이터를 기반으로 추출합니다.<br><br> 시간 순서에 따라 사용자의 자주가는 곳이 변하면 AI가 이를 알아차립니다. <br><br> 준비된 위치 데이터를 이용해서 자주가는 장소를 찾아내는 것을 눈으로 확인해 보세요.';
+
+	var textIndex02 = 0;
+	var timer02;
+	var description02 = '아래에서 자주 가는 곳을 분석할 디바이스를 선택해주세요.<br><br>';
+
+	var textIndex03 = 0;
+	var timer03;
+	var description03 = '지도에는 디바이스가 지난 하루 동안 움직인 모든 위치 정보입니다.<br><br> AI에게 자주가는 장소 분석 요청을 해보세요';
+
+
+	var speed = 75;
+
+	function typeWriter() {
+		if (textIndex01 < description01.length) {
+			document.getElementById("consoleText").innerHTML = description01
+					.substring(0, textIndex01);
+			textIndex01++;
+			timer01 = setTimeout(typeWriter, speed);
+		} else {
+			 clearTimeout(timer01);
+			var x = document.getElementById("startButton");
+			x.style.display = "block";
+			x.style.margin = "0 auto";
+		}
+	}
+
+	function descriptionStart() {
+		if (textIndex02 == 0) {
+			document.getElementById("consoleText").innerHTML = "";
+			var x = document.getElementById("startButton");
+			x.style.display = "none";
+		}
+
+		if (textIndex02 < description02.length) {
+			document.getElementById("consoleText").innerHTML = description02.substring(0,
+					textIndex02);
+			textIndex02++;
+			timer02 = setTimeout(descriptionStart, speed);
+		}else{
+			clearTimeout(timer02);
+			document.getElementById("device1").style.display = "none";
+			document.getElementById("device2").style.display = "none";
+			document.getElementById("device3").style.display = "none";
+			$("#device1").fadeIn();
+	        $("#device2").fadeIn("slow");
+	        $("#device3").fadeIn(1500);
+		}
+	}
+
+	function descriptionDeviceSelect() {
+		if (textIndex03 == 0) {
+			document.getElementById("consoleText").innerHTML = "";
+			var x = document.getElementById("requestButton");
+			x.style.display = "none";
+		}
+
+		if (textIndex03 < description03.length) {
+			document.getElementById("consoleText").innerHTML = description03.substring(0,
+					textIndex03);
+			textIndex03++;
+			timer03 = setTimeout(descriptionDeviceSelect, speed);
+		}else{
+			 clearTimeout(timer03);
+			 var x = document.getElementById("requestButton");
+			 x.style.display = "block";
+			 x.style.margin = "0 auto";
+
+		}
+	}
+</script>
+
+<script>
+
+	var selectedDevice;
+
+	$("#device1").bind("click", function() {
+		console.log("Test");
+	});
+
+	function doAction(id) {
+		console.log(id);
+
+		var allData = {
+			"testData" : "testData"
+		};
+
+		$.ajax({
+			type : "POST",
+			url : "ajaxTest.html",
+			data : allData,
+			success : function(msg) {
+				console.log(msg);
+			}
+		});
+	}
+
+	function getDeviceProp(id, deviceNum) {
+
+		console.log(deviceNum);
+
+		selectedDevice = id;
+
+		var allData = {
+			"id" : id
+		};
+
+		$.ajax({
+			type : "POST",
+			url : "freqlocations.html",
+			data : allData,
+			success : function(data) {
+				$(".m-t-0").css({
+					"background" : "rgba(0,0,0,0)"
+				});
+				$("#device" + deviceNum).css({
+					"background" : "rgba(0,0,0,0.05)"
+				}); /* 선택된 효과 정리필요 */
+				var obj = JSON.parse(data);
+				for(var i = 0; i<obj.length;i++){
+					/* var latitude = obj.latitude;
+					console.log(latitude); */
+					var uluru = {lat: obj[i].latitude, lng: obj[i].longitude};
+					var marker = new google.maps.Marker({position: uluru, map: map});
+
+				}
+
+				var center = {lat: obj[0].latitude, lng: obj[0].longitude};
+
+				clearTimeout(timer01);
+				clearTimeout(timer02);
+				clearTimeout(timer03);
+				textIndex03 = 0;
+				map.setCenter(center);
+				descriptionDeviceSelect()
+
+				/*
+				var uluru = {lat: 37.408002, lng: 126.971871};
+				  // The map, centered at Uluru
+				var marker = new google.maps.Marker({position: uluru, map: map}); */
+			}
+		});
+	}
+
+	function analyzeLocations(){
+		console.log(selectedDevice);
+	}
+
+	/* function getDevice */
+</script>
+
+
+</html>
